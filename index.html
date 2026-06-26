@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Curated Corner — Fashion, Nails, Home & Lifestyle Inspiration</title>
+  <meta name="description" content="Your go-to destination for nail art inspo, outfit ideas, aesthetic home decor, and lifestyle tips. Follow us on Pinterest for daily inspiration!">
+  <meta property="og:title" content="The Curated Corner — Fashion, Nails, Home & Lifestyle" />
+  <meta property="og:description" content="Daily inspiration for nail art, fashion, home decor & lifestyle. Curated for the modern aesthetic woman." />
+  <meta property="og:type" content="website" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <span class="logo-script">The Curated Corner</span>
+      <span class="logo-sub">Style &bull; Beauty &bull; Living</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="nails.html">Nail Art</a></li>
+      <li><a href="decor.html">Home Decor</a></li>
+      <li><a href="fashion.html">Fashion</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+    <a href="https://pinterest.com" target="_blank" rel="noopener" class="nav-pinterest">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 0 1 .083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
+      Follow on Pinterest
+    </a>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-menu-close" id="menuClose">&times;</button>
+  <a href="index.html">Home</a>
+  <a href="blog.html">Blog</a>
+  <a href="nails.html">Nail Art</a>
+  <a href="decor.html">Home Decor</a>
+  <a href="fashion.html">Fashion</a>
+  <a href="about.html">About</a>
+  <a href="https://pinterest.com" target="_blank" style="color: #E60023;">Pinterest ♥</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="hero-eyebrow">Welcome to Your Aesthetic Haven</div>
+      <h1 class="hero-title">
+        Where <em>Style</em> Meets<br>Inspiration
+      </h1>
+      <div class="hero-subtitle">✨ Curated for the modern aesthetic woman</div>
+      <p class="hero-desc">
+        Discover dreamy nail art designs, effortless outfit ideas, aesthetic room inspo, and lifestyle tips that make every day feel Pinterest-worthy.
+      </p>
+      <div class="hero-actions">
+        <a href="blog.html" class="btn-primary">Explore the Blog</a>
+        <a href="https://pinterest.com" target="_blank" rel="noopener" class="btn-outline">Follow on Pinterest</a>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <div class="hero-stat-num">500+</div>
+          <div class="hero-stat-label">Pins Curated</div>
+        </div>
+        <div>
+          <div class="hero-stat-num">12k</div>
+          <div class="hero-stat-label">Monthly Readers</div>
+        </div>
+        <div>
+          <div class="hero-stat-num">4</div>
+          <div class="hero-stat-label">Style Categories</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="floating-badge">
+        <div class="floating-badge-text">New<br>Posts<br>Weekly</div>
+      </div>
+      <div class="hero-grid">
+        <a href="post-nails.html" class="hero-card">
+          <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=800&q=80" alt="Aesthetic nail art" class="hero-card-img" />
+          <div class="hero-card-overlay">
+            <span class="hero-card-tag">Nail Art</span>
+            <h3 class="hero-card-title">30 Dreamy Nail Designs for Every Season</h3>
+          </div>
+        </a>
+        <a href="post-fashion.html" class="hero-card small">
+          <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=600&q=80" alt="Fashion inspiration" class="hero-card-img" />
+          <div class="hero-card-overlay">
+            <span class="hero-card-tag">Fashion</span>
+            <h3 class="hero-card-title">Summer Outfit Formulas</h3>
+          </div>
+        </a>
+        <a href="post-decor.html" class="hero-card small">
+          <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=600&q=80" alt="Home decor" class="hero-card-img" />
+          <div class="hero-card-overlay">
+            <span class="hero-card-tag">Home Decor</span>
+            <h3 class="hero-card-title">Aesthetic Room Ideas</h3>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CATEGORIES STRIP -->
+<div class="categories-strip">
+  <div class="categories-inner">
+    <div class="cat-pill active"><span>💅</span> Nail Art</div>
+    <div class="cat-pill"><span>👗</span> Fashion</div>
+    <div class="cat-pill"><span>🏠</span> Home Decor</div>
+    <div class="cat-pill"><span>✨</span> Lifestyle</div>
+    <div class="cat-pill"><span>🌸</span> Seasonal Trends</div>
+    <div class="cat-pill"><span>☕</span> Aesthetic Living</div>
+    <div class="cat-pill"><span>💐</span> Gift Guides</div>
+    <div class="cat-pill"><span>🛍️</span> Finds Under $50</div>
+  </div>
+</div>
+
+<!-- FEATURED POSTS -->
+<section class="section">
+  <div class="section-inner">
+    <div class="section-header fade-up">
+      <div class="section-eyebrow">Fresh from the Blog</div>
+      <h2 class="section-title">Featured Posts</h2>
+      <p class="section-desc">Hand-picked content to inspire your next look, design, or corner of your home.</p>
+    </div>
+
+    <div class="featured-large fade-up">
+      <a href="post-nails.html" class="post-card post-card-lg">
+        <div class="post-card-img-wrap">
+          <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=900&q=80" alt="Nail art designs" class="post-card-img" />
+          <div class="post-card-category">✨ Featured</div>
+          <div class="post-card-save">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 0 1 .083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
+          </div>
+        </div>
+        <div class="post-card-body">
+          <div class="post-card-meta">
+            <span>💅 Nail Art</span>
+            <span>📅 June 20, 2026</span>
+          </div>
+          <h3 class="post-card-title">30 Dreamy Nail Designs You Need to Try This Season</h3>
+          <p class="post-card-excerpt">From soft glazed donut nails to bold floral art — these are the most-pinned nail ideas taking over Pinterest right now. Get the look with our step-by-step guides.</p>
+          <div class="post-card-footer">
+            <span class="post-card-read">Read More <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+            <span class="post-card-time">8 min read</span>
+          </div>
+        </div>
+      </a>
+
+      <div style="display:flex; flex-direction:column; gap:28px;">
+        <a href="post-decor.html" class="post-card">
+          <div class="post-card-img-wrap" style="height:200px;">
+            <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=700&q=80" alt="Aesthetic bedroom" class="post-card-img" />
+            <div class="post-card-category">🏠 Home Decor</div>
+          </div>
+          <div class="post-card-body">
+            <div class="post-card-meta"><span>📅 June 18, 2026</span></div>
+            <h3 class="post-card-title" style="font-size:18px;">15 Aesthetic Bedroom Ideas That Feel Like a 5-Star Hotel</h3>
+            <div class="post-card-footer">
+              <span class="post-card-read">Read More <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+              <span class="post-card-time">6 min read</span>
+            </div>
+          </div>
+        </a>
+
+        <a href="post-fashion.html" class="post-card">
+          <div class="post-card-img-wrap" style="height:200px;">
+            <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=700&q=80" alt="Summer outfit" class="post-card-img" />
+            <div class="post-card-category">👗 Fashion</div>
+          </div>
+          <div class="post-card-body">
+            <div class="post-card-meta"><span>📅 June 15, 2026</span></div>
+            <h3 class="post-card-title" style="font-size:18px;">10 Summer Outfit Formulas That Always Look Chic</h3>
+            <div class="post-card-footer">
+              <span class="post-card-read">Read More <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+              <span class="post-card-time">5 min read</span>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="featured-grid">
+      <a href="post-lifestyle.html" class="post-card fade-up fade-up-delay-1">
+        <div class="post-card-img-wrap">
+          <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=700&q=80" alt="Morning routine" class="post-card-img" />
+          <div class="post-card-category">✨ Lifestyle</div>
+          <div class="post-card-save">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 0 1 .083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
+          </div>
+        </div>
+        <div class="post-card-body">
+          <div class="post-card-meta"><span>✨ Lifestyle</span><span>📅 June 12, 2026</span></div>
+          <h3 class="post-card-title">The Perfect Aesthetic Morning Routine</h3>
+          <p class="post-card-excerpt">Transform your mornings into a luxurious ritual with these simple yet beautiful habits that set the tone for your entire day.</p>
+          <div class="post-card-footer">
+            <span class="post-card-read">Read More <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+            <span class="post-card-time">7 min read</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="post-office.html" class="post-card fade-up fade-up-delay-2">
+        <div class="post-card-img-wrap">
+          <img src="https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=700&q=80" alt="Home office decor" class="post-card-img" />
+          <div class="post-card-category">🏠 Home Office</div>
+          <div class="post-card-save">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 0 1 .083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
+          </div>
+        </div>
+        <div class="post-card-body">
+          <div class="post-card-meta"><span>🏠 Home Office</span><span>📅 June 10, 2026</span></div>
+          <h3 class="post-card-title">How to Style a Chic & Functional Home Office</h3>
+          <p class="post-card-excerpt">Create a workspace that's as beautiful as it is productive. From desk setups to wall art — your office deserves a glow-up.</p>
+          <div class="post-card-footer">
+            <span class="post-card-read">Read More <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+            <span class="post-card-time">6 min read</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="post-seasonal.html" class="post-card fade-up fade-up-delay-3">
+        <div class="post-card-img-wrap">
+          <img src="https://images.unsplash.com/photo-1508193638397-1c4234db14d8?w=700&q=80" alt="Autumn aesthetic" class="post-card-img" />
+          <div class="post-card-category">🍂 Seasonal</div>
+          <div class="post-card-save">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 0 1 .083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
+          </div>
+        </div>
+        <div class="post-card-body">
+          <div class="post-card-meta"><span>🍂 Seasonal</span><span>📅 June 8, 2026</span></div>
+          <h3 class="post-card-title">Autumn Aesthetic: The Season's Biggest Trends</h3>
+          <p class="post-card-excerpt">Cozy textures, warm palettes, and earthy tones — autumn is the most aesthetic season. Here's how to embrace it fully.</p>
+          <div class="post-card-footer">
+            <span class="post-card-read">Read More <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+            <span class="post-card-time">5 min read</span>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <div style="text-align:center; margin-top:48px;">
+      <a href="blog.html" class="btn-primary" style="display:inline-block;">View All Posts</a>
+    </div>
+  </div>
+</section>
+
+<!-- CATEGORY SHOWCASE -->
+<section class="section category-showcase">
+  <div class="section-inner">
+    <div class="section-header fade-up">
+      <div class="section-eyebrow">Browse by Vibe</div>
+      <h2 class="section-title">Explore Categories</h2>
+      <p class="section-desc">Find your inspiration, wherever your aesthetic heart takes you.</p>
+    </div>
+    <div class="category-cards">
+      <a href="nails.html" class="cat-card fade-up fade-up-delay-1">
+        <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=600&q=80" alt="Nail Art" class="cat-card-img" />
+        <div class="cat-card-overlay">
+          <div class="cat-card-icon">💅</div>
+          <div class="cat-card-name">Nail Art</div>
+          <div class="cat-card-count">24 posts</div>
+        </div>
+        <div class="cat-card-arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+      </a>
+      <a href="fashion.html" class="cat-card fade-up fade-up-delay-2">
+        <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=600&q=80" alt="Fashion" class="cat-card-img" />
+        <div class="cat-card-overlay">
+          <div class="cat-card-icon">👗</div>
+          <div class="cat-card-name">Fashion</div>
+          <div class="cat-card-count">18 posts</div>
+        </div>
+        <div class="cat-card-arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+      </a>
+      <a href="decor.html" class="cat-card fade-up fade-up-delay-3">
+        <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&q=80" alt="Home Decor" class="cat-card-img" />
+        <div class="cat-card-overlay">
+          <div class="cat-card-icon">🏠</div>
+          <div class="cat-card-name">Home Decor</div>
+          <div class="cat-card-count">16 posts</div>
+        </div>
+        <div class="cat-card-arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+      </a>
+      <a href="blog.html" class="cat-card fade-up">
+        <img src="https://images.unsplash.com/photo-1506784365847-bbad939e9335?w=600&q=80" alt="Lifestyle" class="cat-card-img" />
+        <div class="cat-card-overlay">
+          <div class="cat-card-icon">✨</div>
+          <div class="cat-card-name">Lifestyle</div>
+          <div class="cat-card-count">22 posts</div>
+        </div>
+        <div class="cat-card-arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- PINTEREST CTA -->
+<section class="section pinterest-cta">
+  <div class="pinterest-cta-inner">
+    <div class="pinterest-logo-big">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 0 1 .083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
+    </div>
+    <div class="pinterest-cta-script">Join us on Pinterest</div>
+    <h2 class="pinterest-cta-title">Save Your Favorite Ideas<br>for Later</h2>
+    <p class="pinterest-cta-desc">
+      Get daily doses of nail inspo, outfit ideas, home decor, and aesthetic lifestyle content — all beautifully curated and ready to save to your boards.
+    </p>
+    <a href="https://pinterest.com" target="_blank" rel="noopener" class="btn-pinterest">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 0 1 .083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
+      Follow The Curated Corner
+    </a>
+    <p class="pinterest-cta-note">Already pinning? Tag us @thecuratedcorner ✨</p>
+  </div>
+</section>
+
+<!-- TRENDING -->
+<section class="section">
+  <div class="section-inner">
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:start;">
+      <div>
+        <div class="section-header" style="text-align:left;">
+          <div class="section-eyebrow" style="justify-content:flex-start;"><span style="width:0;display:none;"></span>Trending Now<span style="width:0;display:none;"></span></div>
+          <h2 class="section-title">Most-Saved Posts</h2>
+          <p class="section-desc" style="margin:0; text-align:left;">The content our readers are pinning, saving, and sharing the most right now.</p>
+        </div>
+        <div class="trending-grid" style="margin-top:36px;">
+          <a href="post-nails.html" class="trending-item">
+            <div class="trending-num">01</div>
+            <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=200&q=80" alt="Nail Art" class="trending-img" />
+            <div class="trending-text">
+              <div class="trending-cat">💅 Nail Art</div>
+              <div class="trending-title">30 Dreamy Nail Designs You Need to Try</div>
+              <div class="trending-meta">8 min · 2.4k saves</div>
+            </div>
+          </a>
+          <a href="post-decor.html" class="trending-item">
+            <div class="trending-num">02</div>
+            <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=200&q=80" alt="Bedroom Decor" class="trending-img" />
+            <div class="trending-text">
+              <div class="trending-cat">🏠 Home Decor</div>
+              <div class="trending-title">15 Aesthetic Bedroom Ideas That Feel 5-Star</div>
+              <div class="trending-meta">6 min · 1.9k saves</div>
+            </div>
+          </a>
+          <a href="post-fashion.html" class="trending-item">
+            <div class="trending-num">03</div>
+            <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=200&q=80" alt="Fashion" class="trending-img" />
+            <div class="trending-text">
+              <div class="trending-cat">👗 Fashion</div>
+              <div class="trending-title">10 Summer Outfit Formulas That Always Look Chic</div>
+              <div class="trending-meta">5 min · 1.7k saves</div>
+            </div>
+          </a>
+          <a href="post-lifestyle.html" class="trending-item">
+            <div class="trending-num">04</div>
+            <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=200&q=80" alt="Lifestyle" class="trending-img" />
+            <div class="trending-text">
+              <div class="trending-cat">✨ Lifestyle</div>
+              <div class="trending-title">The Perfect Aesthetic Morning Routine</div>
+              <div class="trending-meta">7 min · 1.5k saves</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- TIPS -->
+      <div>
+        <div class="section-header" style="text-align:left; margin-bottom:28px;">
+          <div class="section-eyebrow" style="justify-content:flex-start;"><span style="display:none"></span>Why Us</div>
+          <h2 class="section-title">The Curated Way</h2>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:20px;">
+          <div class="tip-card" style="text-align:left; display:flex; gap:20px; align-items:flex-start; padding:24px;">
+            <div class="tip-icon" style="margin:0; flex-shrink:0;">💅</div>
+            <div>
+              <h3 class="tip-title" style="font-size:18px; margin-bottom:8px;">Pinterest-First Content</h3>
+              <p class="tip-desc">Every post is designed to be saved, shared, and discovered on Pinterest — with beautiful visuals and actionable ideas.</p>
+            </div>
+          </div>
+          <div class="tip-card" style="text-align:left; display:flex; gap:20px; align-items:flex-start; padding:24px;">
+            <div class="tip-icon" style="margin:0; flex-shrink:0;">🛍️</div>
+            <div>
+              <h3 class="tip-title" style="font-size:18px; margin-bottom:8px;">Honest Product Picks</h3>
+              <p class="tip-desc">Only recommending products we'd actually buy. Affiliate links clearly marked — your trust always comes first.</p>
+            </div>
+          </div>
+          <div class="tip-card" style="text-align:left; display:flex; gap:20px; align-items:flex-start; padding:24px;">
+            <div class="tip-icon" style="margin:0; flex-shrink:0;">✨</div>
+            <div>
+              <h3 class="tip-title" style="font-size:18px; margin-bottom:8px;">Updated Weekly</h3>
+              <p class="tip-desc">Fresh content every week — from trending nail art to the latest home decor finds. Never a dull feed.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="section newsletter">
+  <div class="section-inner">
+    <div class="newsletter-box fade-up">
+      <div class="newsletter-text">
+        <div class="section-eyebrow" style="justify-content:flex-start;">Free Newsletter</div>
+        <h2 class="newsletter-title">Get Weekly Inspo Delivered</h2>
+        <p class="newsletter-desc">The best nail ideas, outfit formulas, and home decor finds — straight to your inbox every Thursday morning.</p>
+        <div class="newsletter-perks">
+          <div class="newsletter-perk"><div class="perk-check">✓</div> Weekly curated inspiration roundups</div>
+          <div class="newsletter-perk"><div class="perk-check">✓</div> Exclusive affiliate finds & discount codes</div>
+          <div class="newsletter-perk"><div class="perk-check">✓</div> Pinterest board recommendations</div>
+          <div class="newsletter-perk"><div class="perk-check">✓</div> First look at new blog posts</div>
+        </div>
+      </div>
+      <form class="newsletter-form" onsubmit="handleSubscribe(event)">
+        <div class="form-group">
+          <label class="form-label">Your Name</label>
+          <input type="text" class="form-input" placeholder="e.g. Emma" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email Address</label>
+          <input type="email" class="form-input" placeholder="hello@youremail.com" required />
+        </div>
+        <button type="submit" class="btn-subscribe">Subscribe — It's Free ✨</button>
+        <p class="form-privacy">No spam, ever. Unsubscribe anytime. Your email is safe with us. 🌸</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-main">
+    <div class="footer-brand">
+      <div class="logo-script">The Curated Corner</div>
+      <div class="logo-sub">Style · Beauty · Living</div>
+      <p>A cozy corner of the internet for everything fashion, nail art, home decor, and aesthetic living. Made with love for the modern woman who lives beautifully.</p>
+      <div class="footer-socials">
+        <a href="https://pinterest.com" target="_blank" rel="noopener" class="footer-social" aria-label="Pinterest">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 0 1 .083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
+        </a>
+        <a href="#" class="footer-social" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        </a>
+        <a href="#" class="footer-social" aria-label="TikTok">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.73a4.85 4.85 0 01-1.01-.04z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Blog</h4>
+      <ul>
+        <li><a href="nails.html">Nail Art</a></li>
+        <li><a href="fashion.html">Fashion</a></li>
+        <li><a href="decor.html">Home Decor</a></li>
+        <li><a href="blog.html">Lifestyle</a></li>
+        <li><a href="blog.html">Seasonal Trends</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Discover</h4>
+      <ul>
+        <li><a href="blog.html">All Posts</a></li>
+        <li><a href="blog.html">Most Popular</a></li>
+        <li><a href="blog.html">New This Week</a></li>
+        <li><a href="about.html">About Me</a></li>
+        <li><a href="https://pinterest.com" target="_blank">Pinterest Board</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Disclaimer</a></li>
+        <li><a href="#">Affiliate Disclosure</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 The Curated Corner. All rights reserved.</span>
+    <span class="footer-bottom-right">Made with ♥ for <a href="https://pinterest.com" target="_blank">Pinterest lovers</a></span>
+  </div>
+</footer>
+
+<!-- BACK TO TOP -->
+<button class="back-to-top" id="backToTop" aria-label="Back to top">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 15l-6-6-6 6"/></svg>
+</button>
+
+<script src="script.js"></script>
+</body>
+</html>
