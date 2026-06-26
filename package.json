@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "The Curated Corner — Fashion, Nail Art, Home Decor & Lifestyle Blog",
   "private": true,
+  "type": "module",
   "engines": {
     "node": "22.x"
   },
