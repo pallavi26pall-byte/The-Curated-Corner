@@ -51,14 +51,32 @@ catPills.forEach(pill => {
   });
 });
 
-// Newsletter subscribe handler
-function handleSubscribe(e) {
+// Newsletter subscribe handler — posts to /api/subscribe (Supabase)
+async function handleSubscribe(e) {
   e.preventDefault();
-  const btn = e.target.querySelector('.btn-subscribe');
-  btn.textContent = '🎉 You\'re subscribed! Check your inbox.';
-  btn.style.background = 'var(--sage)';
+  const form = e.target;
+  const btn = form.querySelector('.btn-subscribe');
+  const name = form.querySelector('input[type="text"]')?.value || '';
+  const email = form.querySelector('input[type="email"]').value;
+
+  btn.textContent = 'Subscribing...';
   btn.disabled = true;
-  e.target.reset();
+
+  try {
+    const res = await fetch('/api/subscribe', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, email }),
+    });
+    const data = await res.json();
+    btn.textContent = '🎉 ' + (data.message || 'Subscribed!');
+    btn.style.background = 'var(--sage)';
+    form.reset();
+  } catch {
+    btn.textContent = 'Something went wrong — try again';
+    btn.style.background = '#c0392b';
+    btn.disabled = false;
+  }
 }
 
 // Pinterest save button hover effect
