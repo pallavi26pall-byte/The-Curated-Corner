@@ -62,7 +62,11 @@
 
 <div class="blog-layout">
   <main>
-    <div class="blog-posts-grid">
+    <!-- Your real posts load here from the database -->
+    <div class="blog-posts-grid" id="dynamicPosts"></div>
+
+    <!-- Demo posts (shown only until you publish your own) -->
+    <div class="blog-posts-grid" id="demoGrid">
       <a href="post-nails.html" class="post-card fade-up">
         <div class="post-card-img-wrap">
           <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=700&q=80" alt="Nail designs" class="post-card-img" />
@@ -192,8 +196,8 @@
       </a>
     </div>
 
-    <div style="text-align:center; padding:50px 0 20px;">
-      <button class="btn-primary" style="border:none; cursor:pointer;">Load More Posts</button>
+    <div style="text-align:center; padding:50px 0 20px;" id="loadMoreWrap">
+      <button class="btn-primary" style="border:none; cursor:pointer;" onclick="location.reload()">Load More Posts</button>
     </div>
   </main>
 
@@ -282,7 +286,7 @@
         <li><a href="index.html">Home</a></li>
         <li><a href="blog.html">Blog</a></li>
         <li><a href="about.html">About</a></li>
-        <li><a href="#">Contact</a></li>
+        <li><a href="contact.html">Contact</a></li>
       </ul>
     </div>
     <div class="footer-col">
@@ -304,6 +308,60 @@
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 15l-6-6-6 6"/></svg>
 </button>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js"></script>
+<script>
+(async function () {
+  const wrap = document.getElementById("dynamicPosts");
+  const { data, error } = await window.sb
+    .from("posts").select("*").eq("published", true).order("created_at", { ascending: false });
+
+  if (error || !data || !data.length) return; // keep demo posts visible
+
+  // We have real posts — hide the demo grid + load-more button.
+  document.getElementById("demoGrid").style.display = "none";
+  const lm = document.getElementById("loadMoreWrap"); if (lm) lm.style.display = "none";
+
+  const arrow = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:14px;height:14px;"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
+
+  function card(p) {
+    const cat = p.category || "Lifestyle";
+    return `
+      <a href="post.html?slug=${encodeURIComponent(p.slug)}" class="post-card" data-cat="${window.escapeHtml(cat)}">
+        <div class="post-card-img-wrap">
+          <img src="${p.cover_image || ""}" alt="${window.escapeHtml(p.title)}" class="post-card-img" onerror="this.style.visibility='hidden'" />
+          <div class="post-card-category">${window.catEmoji(cat)} ${window.escapeHtml(cat)}</div>
+        </div>
+        <div class="post-card-body">
+          <div class="post-card-meta"><span>📅 ${window.formatDate(p.created_at)}</span><span>⏱ ${p.read_time || 1} min</span></div>
+          <h3 class="post-card-title">${window.escapeHtml(p.title)}</h3>
+          <p class="post-card-excerpt">${window.escapeHtml(p.excerpt || "")}</p>
+          <div class="post-card-footer">
+            <span class="post-card-read">Read More ${arrow}</span>
+            <span class="post-card-time">${p.read_time || 1} min read</span>
+          </div>
+        </div>
+      </a>`;
+  }
+
+  function render(list) {
+    wrap.innerHTML = list.length
+      ? list.map(card).join("")
+      : '<p style="grid-column:1/-1;text-align:center;color:var(--text-light);padding:40px;">No posts in this category yet 🌸</p>';
+  }
+  render(data);
+
+  // Category pill filtering
+  document.querySelectorAll(".cat-pill").forEach((pill) => {
+    pill.addEventListener("click", () => {
+      const label = pill.textContent.replace(/[^\p{L}\s]/gu, "").trim().toLowerCase();
+      if (label.includes("all")) render(data);
+      else render(data.filter((p) => (p.category || "").toLowerCase() === label ||
+        (label === "home decor" && p.category === "Home Decor")));
+    });
+  });
+})();
+</script>
 <script src="script.js"></script>
 </body>
 </html>

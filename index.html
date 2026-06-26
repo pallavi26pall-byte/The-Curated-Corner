@@ -136,7 +136,10 @@
       <p class="section-desc">Hand-picked content to inspire your next look, design, or corner of your home.</p>
     </div>
 
-    <div class="featured-large fade-up">
+    <!-- Your latest posts load here once you publish -->
+    <div class="featured-grid" id="dynamicFeatured" style="display:none;"></div>
+
+    <div class="featured-large fade-up" id="staticFeaturedLarge">
       <a href="post-nails.html" class="post-card post-card-lg">
         <div class="post-card-img-wrap">
           <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=900&q=80" alt="Nail art designs" class="post-card-img" />
@@ -192,7 +195,7 @@
       </div>
     </div>
 
-    <div class="featured-grid">
+    <div class="featured-grid" id="staticFeatured">
       <a href="post-lifestyle.html" class="post-card fade-up fade-up-delay-1">
         <div class="post-card-img-wrap">
           <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=700&q=80" alt="Morning routine" class="post-card-img" />
@@ -493,7 +496,7 @@
         <li><a href="#">Privacy Policy</a></li>
         <li><a href="#">Disclaimer</a></li>
         <li><a href="#">Affiliate Disclosure</a></li>
-        <li><a href="#">Contact</a></li>
+        <li><a href="contact.html">Contact</a></li>
       </ul>
     </div>
   </div>
@@ -508,6 +511,41 @@
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 15l-6-6-6 6"/></svg>
 </button>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js"></script>
+<script>
+(async function () {
+  const { data } = await window.sb.from("posts").select("*")
+    .eq("published", true).order("created_at", { ascending: false }).limit(6);
+  if (!data || !data.length) return; // keep the demo showcase
+
+  const sl = document.getElementById("staticFeaturedLarge"); if (sl) sl.style.display = "none";
+  const sf = document.getElementById("staticFeatured"); if (sf) sf.style.display = "none";
+
+  const arrow = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
+  const grid = document.getElementById("dynamicFeatured");
+  grid.style.display = "";
+  grid.innerHTML = data.map((p) => {
+    const cat = p.category || "Lifestyle";
+    return `
+      <a href="post.html?slug=${encodeURIComponent(p.slug)}" class="post-card">
+        <div class="post-card-img-wrap">
+          <img src="${p.cover_image || ""}" alt="${window.escapeHtml(p.title)}" class="post-card-img" onerror="this.style.visibility='hidden'" />
+          <div class="post-card-category">${window.catEmoji(cat)} ${window.escapeHtml(cat)}</div>
+        </div>
+        <div class="post-card-body">
+          <div class="post-card-meta"><span>${window.catEmoji(cat)} ${window.escapeHtml(cat)}</span><span>📅 ${window.formatDate(p.created_at)}</span></div>
+          <h3 class="post-card-title">${window.escapeHtml(p.title)}</h3>
+          <p class="post-card-excerpt">${window.escapeHtml(p.excerpt || "")}</p>
+          <div class="post-card-footer">
+            <span class="post-card-read">Read More ${arrow}</span>
+            <span class="post-card-time">${p.read_time || 1} min read</span>
+          </div>
+        </div>
+      </a>`;
+  }).join("");
+})();
+</script>
 <script src="script.js"></script>
 </body>
 </html>

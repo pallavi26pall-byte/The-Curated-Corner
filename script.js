@@ -68,14 +68,51 @@ async function handleSubscribe(e) {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name, email }),
     });
-    const data = await res.json();
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok) throw new Error(data.error || 'Request failed');
     btn.textContent = '🎉 ' + (data.message || 'Subscribed!');
     btn.style.background = 'var(--sage)';
     form.reset();
-  } catch {
-    btn.textContent = 'Something went wrong — try again';
+  } catch (err) {
+    btn.textContent = err.message === 'Failed to fetch'
+      ? 'Network error — try again'
+      : 'Something went wrong — try again';
     btn.style.background = '#c0392b';
     btn.disabled = false;
+  }
+}
+
+// Contact form handler — posts to /api/contact (Supabase)
+async function handleContact(e) {
+  e.preventDefault();
+  const form = e.target;
+  const btn = form.querySelector('button[type="submit"]');
+  const note = form.querySelector('.form-note');
+  const name = form.querySelector('input[name="name"]')?.value || '';
+  const email = form.querySelector('input[name="email"]').value;
+  const message = form.querySelector('textarea[name="message"]').value;
+
+  const original = btn.textContent;
+  btn.textContent = 'Sending…';
+  btn.disabled = true;
+  if (note) { note.textContent = ''; note.style.color = ''; }
+
+  try {
+    const res = await fetch('/api/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, email, message }),
+    });
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok) throw new Error(data.error || 'Request failed');
+    form.reset();
+    btn.textContent = '✓ Sent!';
+    btn.style.background = 'var(--sage)';
+    if (note) { note.style.color = 'var(--sage)'; note.textContent = "Thank you! I'll get back to you soon. 🌸"; }
+  } catch (err) {
+    btn.textContent = original;
+    btn.disabled = false;
+    if (note) { note.style.color = '#c0392b'; note.textContent = 'Something went wrong — please try again.'; }
   }
 }
 

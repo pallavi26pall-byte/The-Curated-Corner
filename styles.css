@@ -1043,6 +1043,11 @@ h1, h2, h3, h4 { font-family: 'Playfair Display', serif; line-height: 1.25; }
   gap: 24px;
 }
 
+/* About page: four category cards */
+.about-cats { grid-template-columns: repeat(4, 1fr); }
+@media (max-width: 1024px) { .about-cats { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px)  { .about-cats { grid-template-columns: 1fr; } }
+
 .tip-card {
   background: white;
   border-radius: var(--radius);

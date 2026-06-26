@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Loading… — The Curated Corner</title>
+  <meta name="description" id="metaDesc" content="The Curated Corner — fashion, nail art, home decor & lifestyle." />
+  <meta property="og:title" id="ogTitle" content="The Curated Corner" />
+  <meta property="og:description" id="ogDesc" content="" />
+  <meta property="og:image" id="ogImage" content="" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <style>
+    .reading-progress { position:fixed; top:0; left:0; height:3px; background:linear-gradient(90deg,var(--rose-deep),var(--gold)); z-index:1001; width:0; transition:width .1s linear; }
+    .post-loading, .post-missing { max-width:760px; margin:0 auto; padding:160px 32px 120px; text-align:center; color:var(--text-light); }
+    .post-missing h1 { font-family:'Playfair Display',serif; font-size:34px; color:var(--text-dark); margin-bottom:14px; }
+  </style>
+</head>
+<body>
+
+<div class="reading-progress" id="readingProgress"></div>
+
+<nav class="navbar scrolled" id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <span class="logo-script">The Curated Corner</span>
+      <span class="logo-sub">Style &bull; Beauty &bull; Living</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="nails.html">Nail Art</a></li>
+      <li><a href="decor.html">Home Decor</a></li>
+      <li><a href="fashion.html">Fashion</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+    <a href="https://pinterest.com" target="_blank" rel="noopener" class="nav-pinterest">
+      <svg viewBox="0 0 24 24" fill="currentColor" style="width:16px;height:16px;"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 0 1 .083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
+      Save to Pinterest
+    </a>
+    <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-menu-close" id="menuClose">&times;</button>
+  <a href="index.html">Home</a><a href="blog.html">Blog</a><a href="nails.html">Nail Art</a><a href="decor.html">Home Decor</a><a href="fashion.html">Fashion</a><a href="about.html">About</a>
+</div>
+
+<div id="postRoot">
+  <div class="post-loading">Loading the post… ✨</div>
+</div>
+
+<footer class="footer">
+  <div class="footer-main">
+    <div class="footer-brand">
+      <div class="logo-script">The Curated Corner</div>
+      <div class="logo-sub">Style · Beauty · Living</div>
+      <p>A cozy corner of the internet for everything fashion, nail art, home decor, and aesthetic living.</p>
+    </div>
+    <div class="footer-col"><h4>Blog</h4><ul><li><a href="nails.html">Nail Art</a></li><li><a href="fashion.html">Fashion</a></li><li><a href="decor.html">Home Decor</a></li><li><a href="blog.html">Lifestyle</a></li></ul></div>
+    <div class="footer-col"><h4>Pages</h4><ul><li><a href="index.html">Home</a></li><li><a href="blog.html">Blog</a></li><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    <div class="footer-col"><h4>Legal</h4><ul><li><a href="#">Affiliate Disclosure</a></li><li><a href="#">Privacy Policy</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 The Curated Corner. All rights reserved.</span>
+    <span class="footer-bottom-right">Made with ♥ for <a href="https://pinterest.com" target="_blank">Pinterest lovers</a></span>
+  </div>
+</footer>
+
+<button class="back-to-top" id="backToTop"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 15l-6-6-6 6"/></svg></button>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js"></script>
+<script>
+(async function () {
+  const root = document.getElementById("postRoot");
+  const params = new URLSearchParams(location.search);
+  const slug = params.get("slug");
+
+  if (!slug) { showMissing(); return; }
+
+  const { data: post, error } = await window.sb
+    .from("posts").select("*").eq("slug", slug).eq("published", true).maybeSingle();
+
+  if (error || !post) { showMissing(); return; }
+
+  const cat = post.category || "Lifestyle";
+  const emoji = window.catEmoji(cat);
+  const catPage = (window.CATEGORIES[cat] && window.CATEGORIES[cat].page) || "blog.html";
+  const bodyHtml = window.toHtml(post.content);
+  const cover = post.cover_image
+    ? `<img src="${post.cover_image}" alt="${window.escapeHtml(post.title)}" class="post-hero-img" />` : "";
+
+  document.title = post.title + " — The Curated Corner";
+  const desc = post.excerpt || post.title;
+  document.getElementById("metaDesc").content = desc;
+  document.getElementById("ogTitle").content = post.title;
+  document.getElementById("ogDesc").content = desc;
+  if (post.cover_image) document.getElementById("ogImage").content = post.cover_image;
+
+  root.innerHTML = `
+    <div style="background:var(--cream); padding:100px 32px 20px; border-bottom:1px solid var(--beige);">
+      <div style="max-width:1280px; margin:0 auto; font-size:13px; color:var(--text-light);">
+        <a href="index.html" style="color:var(--text-light);">Home</a> <span style="margin:0 8px;">›</span>
+        <a href="${catPage}" style="color:var(--text-light);">${window.escapeHtml(cat)}</a> <span style="margin:0 8px;">›</span>
+        <span style="color:var(--text-mid);">${window.escapeHtml(post.title)}</span>
+      </div>
+    </div>
+
+    <div class="post-layout">
+      <article class="post-article">
+        <div class="post-header">
+          <span class="post-category-tag">${emoji} ${window.escapeHtml(cat)}</span>
+          <h1 class="post-title">${window.escapeHtml(post.title)}</h1>
+          ${post.excerpt ? `<p style="font-size:18px;color:var(--text-mid);font-style:italic;margin-bottom:18px;">${window.escapeHtml(post.excerpt)}</p>` : ""}
+          <div class="post-meta-bar">
+            <div class="post-author">
+              <img src="pallavi.jpeg" alt="Pallavi" class="post-author-avatar" />
+              <div>
+                <div class="post-author-name">Pallavi K.</div>
+                <div class="post-author-role">Beauty & Lifestyle Editor</div>
+              </div>
+            </div>
+            <span class="post-meta-item">📅 ${window.formatDate(post.created_at)}</span>
+            <span class="post-meta-item">⏱ ${post.read_time || 1} min read</span>
+          </div>
+        </div>
+
+        ${cover}
+
+        <div class="post-pinterest-save">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 0 1 .083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
+          <p>Love this post? <a id="pinThis" href="https://pinterest.com/pin/create/button/" target="_blank">Save it to your Pinterest board</a> so you never lose the inspo! 💖</p>
+        </div>
+
+        <div class="post-content">${bodyHtml}</div>
+
+        <div class="post-tags">
+          <span class="post-tag">${window.escapeHtml(cat.toLowerCase())}</span>
+          <span class="post-tag">the curated corner</span>
+          <span class="post-tag">pinterest inspo</span>
+        </div>
+
+        <div class="related-posts">
+          <h2>You Might Also Love</h2>
+          <div class="related-grid" id="relatedGrid"></div>
+        </div>
+      </article>
+
+      <aside class="sidebar">
+        <div class="sidebar-pinterest">
+          <div class="sidebar-pinterest-icon">📌</div>
+          <h3>Save This Post</h3>
+          <p>Loved it? Pin it to your boards for later inspiration!</p>
+          <a href="https://pinterest.com" target="_blank" rel="noopener" class="btn-follow-pinterest">Save to Pinterest</a>
+        </div>
+        <div class="sidebar-widget">
+          <h3>Browse by Category</h3>
+          <div class="sidebar-cats">
+            <a href="nails.html" class="sidebar-cat">💅 Nail Art</a>
+            <a href="fashion.html" class="sidebar-cat">👗 Fashion</a>
+            <a href="decor.html" class="sidebar-cat">🏠 Home Decor</a>
+            <a href="blog.html" class="sidebar-cat">✨ Lifestyle</a>
+          </div>
+        </div>
+      </aside>
+    </div>`;
+
+  // build a proper "pin it" link with the cover image + page url
+  const pin = document.getElementById("pinThis");
+  if (pin) {
+    const u = encodeURIComponent(location.href);
+    const media = encodeURIComponent(post.cover_image || "");
+    const desc2 = encodeURIComponent(post.title);
+    pin.href = `https://pinterest.com/pin/create/button/?url=${u}&media=${media}&description=${desc2}`;
+  }
+
+  loadRelated(post.id, cat);
+  initInteractions();
+})();
+
+async function loadRelated(currentId, cat) {
+  const grid = document.getElementById("relatedGrid");
+  if (!grid) return;
+  let { data } = await window.sb.from("posts").select("title,slug,category,cover_image")
+    .eq("published", true).eq("category", cat).neq("id", currentId).limit(3);
+  if (!data || data.length === 0) {
+    ({ data } = await window.sb.from("posts").select("title,slug,category,cover_image")
+      .eq("published", true).neq("id", currentId).order("created_at", { ascending: false }).limit(3));
+  }
+  if (!data || !data.length) { grid.closest(".related-posts").style.display = "none"; return; }
+  grid.innerHTML = data.map((p) => `
+    <a href="post.html?slug=${encodeURIComponent(p.slug)}" class="post-card">
+      <div class="post-card-img-wrap" style="height:200px;">
+        <img src="${p.cover_image || ""}" alt="" class="post-card-img" onerror="this.style.visibility='hidden'" />
+        <div class="post-card-category">${window.catEmoji(p.category)} ${window.escapeHtml(p.category)}</div>
+      </div>
+      <div class="post-card-body"><h3 class="post-card-title" style="font-size:17px;">${window.escapeHtml(p.title)}</h3></div>
+    </a>`).join("");
+}
+
+function showMissing() {
+  document.title = "Post not found — The Curated Corner";
+  document.getElementById("postRoot").innerHTML = `
+    <div class="post-missing">
+      <h1>This post wandered off 🌸</h1>
+      <p style="margin-bottom:24px;">We couldn’t find what you were looking for.</p>
+      <a href="blog.html" class="btn-primary">Back to the Blog</a>
+    </div>`;
+}
+
+function initInteractions() {
+  const navbar = document.getElementById("navbar");
+  window.addEventListener("scroll", () => navbar.classList.toggle("scrolled", true));
+  const backToTop = document.getElementById("backToTop");
+  window.addEventListener("scroll", () => backToTop.classList.toggle("visible", window.scrollY > 400));
+  backToTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+  const hamburger = document.getElementById("hamburger"), mobileMenu = document.getElementById("mobileMenu"), menuClose = document.getElementById("menuClose");
+  hamburger.addEventListener("click", () => mobileMenu.classList.add("open"));
+  menuClose.addEventListener("click", () => mobileMenu.classList.remove("open"));
+  const progressBar = document.getElementById("readingProgress");
+  window.addEventListener("scroll", () => {
+    const article = document.querySelector(".post-content");
+    if (!article) return;
+    const rect = article.getBoundingClientRect();
+    const total = article.offsetHeight - window.innerHeight;
+    const scrolled = Math.max(0, -rect.top);
+    progressBar.style.width = Math.min(100, (scrolled / total) * 100) + "%";
+  });
+}
+</script>
+</body>
+</html>

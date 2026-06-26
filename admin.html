@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Studio — The Curated Corner</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body { background: var(--cream); }
+
+    /* ---------- LOGIN ---------- */
+    .auth-wrap {
+      min-height: 100vh; display: flex; align-items: center; justify-content: center;
+      padding: 24px; background: linear-gradient(135deg, var(--blush) 0%, var(--beige) 100%);
+    }
+    .auth-card {
+      width: 100%; max-width: 410px; background: var(--warm-white);
+      border-radius: var(--radius); box-shadow: var(--shadow-card);
+      padding: 44px 38px; text-align: center;
+    }
+    .auth-card .logo-script { font-size: 30px; }
+    .auth-emoji { font-size: 40px; margin: 10px 0 4px; }
+    .auth-card h1 { font-size: 24px; color: var(--text-dark); margin-bottom: 6px; }
+    .auth-card p.sub { color: var(--text-light); font-size: 14px; margin-bottom: 26px; }
+    .field { text-align: left; margin-bottom: 16px; }
+    .field label { display: block; font-size: 13px; font-weight: 700; color: var(--text-mid); margin-bottom: 6px; letter-spacing: .02em; }
+    .field input, .field select, .field textarea {
+      width: 100%; padding: 13px 15px; border: 1.5px solid var(--blush-dark);
+      border-radius: var(--radius-sm); font-family: inherit; font-size: 15px;
+      color: var(--text-dark); background: var(--warm-white); transition: border-color .2s;
+    }
+    .field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--rose); }
+    .btn-full { width: 100%; border: none; cursor: pointer; }
+    .auth-err { color: #c0392b; font-size: 13px; min-height: 18px; margin-top: 12px; }
+
+    /* ---------- DASHBOARD ---------- */
+    .admin-bar {
+      position: sticky; top: 0; z-index: 50; background: rgba(253,248,245,.92);
+      backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--blush-dark);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 28px; gap: 16px; flex-wrap: wrap;
+    }
+    .admin-bar .logo-script { font-size: 22px; line-height: 1; }
+    .admin-bar .tag { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--gold); font-weight: 700; }
+    .admin-bar-actions { display: flex; gap: 10px; align-items: center; }
+    .btn-ghost {
+      background: transparent; border: 1.5px solid var(--blush-dark); color: var(--text-mid);
+      padding: 9px 16px; border-radius: 100px; font-size: 13px; font-weight: 700; cursor: pointer;
+      font-family: inherit; transition: all .2s; text-decoration: none; display: inline-block;
+    }
+    .btn-ghost:hover { border-color: var(--rose); color: var(--rose-deep); }
+
+    .admin-wrap { max-width: 1280px; margin: 0 auto; padding: 28px; }
+    .editor-grid { display: grid; grid-template-columns: 1.05fr 1fr; gap: 28px; align-items: start; }
+    .panel {
+      background: var(--warm-white); border: 1px solid var(--blush-dark);
+      border-radius: var(--radius); box-shadow: var(--shadow-soft); padding: 26px;
+    }
+    .panel h2 { font-size: 20px; color: var(--text-dark); margin-bottom: 4px; }
+    .panel .panel-sub { font-size: 13px; color: var(--text-light); margin-bottom: 22px; }
+    .row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .hint { font-size: 12px; color: var(--text-light); margin-top: 5px; }
+
+    /* toolbar */
+    .toolbar { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
+    .toolbar button {
+      background: var(--blush); border: 1px solid var(--blush-dark); color: var(--text-mid);
+      padding: 7px 11px; border-radius: 8px; font-size: 12.5px; font-weight: 700; cursor: pointer;
+      font-family: inherit; transition: all .15s;
+    }
+    .toolbar button:hover { background: var(--rose); color: #fff; border-color: var(--rose); }
+    textarea#content { min-height: 320px; line-height: 1.6; resize: vertical; font-size: 14px; }
+
+    /* cover uploader */
+    .cover-drop {
+      border: 1.5px dashed var(--blush-dark); border-radius: var(--radius-sm);
+      padding: 18px; text-align: center; cursor: pointer; transition: all .2s; background: var(--cream);
+    }
+    .cover-drop:hover { border-color: var(--rose); background: var(--blush); }
+    .cover-drop.has-img { padding: 0; border-style: solid; overflow: hidden; }
+    .cover-drop img { width: 100%; height: 180px; object-fit: cover; display: block; }
+    .cover-drop .ph { color: var(--text-light); font-size: 13px; }
+
+    /* toggle */
+    .switch-row { display: flex; align-items: center; gap: 12px; margin: 18px 0; }
+    .switch { position: relative; width: 46px; height: 26px; flex-shrink: 0; }
+    .switch input { opacity: 0; width: 0; height: 0; }
+    .slider { position: absolute; inset: 0; background: var(--blush-dark); border-radius: 100px; transition: .25s; }
+    .slider::before { content: ""; position: absolute; height: 20px; width: 20px; left: 3px; top: 3px; background: #fff; border-radius: 50%; transition: .25s; }
+    .switch input:checked + .slider { background: var(--sage); }
+    .switch input:checked + .slider::before { transform: translateX(20px); }
+
+    .editor-actions { display: flex; gap: 12px; margin-top: 22px; }
+
+    /* live preview */
+    .preview-panel { position: sticky; top: 84px; }
+    .pv-cover { width: 100%; height: 230px; object-fit: cover; border-radius: var(--radius-sm); background: var(--blush); margin-bottom: 18px; }
+    .pv-cat { display: inline-block; background: var(--blush); color: var(--rose-deep); font-size: 12px; font-weight: 700; padding: 5px 14px; border-radius: 100px; margin-bottom: 12px; }
+    .pv-title { font-family: 'Playfair Display', serif; font-size: 30px; color: var(--text-dark); line-height: 1.2; margin-bottom: 10px; }
+    .pv-excerpt { color: var(--text-mid); font-style: italic; margin-bottom: 8px; }
+    .pv-meta { font-size: 13px; color: var(--text-light); margin-bottom: 18px; padding-bottom: 18px; border-bottom: 1px solid var(--blush-dark); }
+    .pv-body { color: var(--text-mid); font-size: 15.5px; line-height: 1.85; }
+    .pv-body h2 { font-size: 22px; color: var(--text-dark); margin: 22px 0 10px; }
+    .pv-body p { margin-bottom: 14px; }
+    .pv-body ul { margin: 0 0 14px 22px; }
+    .pv-body li { margin-bottom: 6px; }
+    .pv-body img { border-radius: var(--radius-sm); margin: 14px 0; }
+    .pv-body blockquote { border-left: 3px solid var(--rose); padding-left: 16px; font-style: italic; color: var(--text-dark); margin: 16px 0; }
+
+    /* posts list */
+    .posts-head { display: flex; align-items: center; justify-content: space-between; margin: 40px 0 18px; }
+    .posts-head h2 { font-size: 22px; color: var(--text-dark); }
+    .post-row {
+      display: flex; align-items: center; gap: 16px; background: var(--warm-white);
+      border: 1px solid var(--blush-dark); border-radius: var(--radius-sm); padding: 12px; margin-bottom: 12px;
+    }
+    .post-row img { width: 72px; height: 56px; object-fit: cover; border-radius: 8px; background: var(--blush); flex-shrink: 0; }
+    .post-row .meta { flex: 1; min-width: 0; }
+    .post-row .meta .t { font-family: 'Playfair Display', serif; font-size: 16px; color: var(--text-dark); margin-bottom: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .post-row .meta .s { font-size: 12.5px; color: var(--text-light); }
+    .badge-draft { background: #f3e3c6; color: #94701f; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 100px; margin-left: 6px; }
+    .post-row .acts { display: flex; gap: 8px; flex-shrink: 0; }
+    .icon-btn { border: 1.5px solid var(--blush-dark); background: #fff; padding: 7px 13px; border-radius: 8px; font-size: 12.5px; font-weight: 700; cursor: pointer; font-family: inherit; transition: all .15s; }
+    .icon-btn:hover { border-color: var(--rose); color: var(--rose-deep); }
+    .icon-btn.danger:hover { border-color: #c0392b; color: #c0392b; }
+    .empty { text-align: center; color: var(--text-light); padding: 40px; }
+
+    /* toast */
+    .toast {
+      position: fixed; bottom: 26px; left: 50%; transform: translateX(-50%) translateY(120px);
+      background: var(--text-dark); color: #fff; padding: 14px 24px; border-radius: 100px;
+      font-size: 14px; font-weight: 600; box-shadow: var(--shadow-card); z-index: 200;
+      transition: transform .35s cubic-bezier(.2,.8,.2,1); max-width: 90vw;
+    }
+    .toast.show { transform: translateX(-50%) translateY(0); }
+    .toast.ok { background: var(--sage); }
+    .toast.err { background: #c0392b; }
+
+    .hidden { display: none !important; }
+    @media (max-width: 900px) { .editor-grid { grid-template-columns: 1fr; } .preview-panel { position: static; } }
+  </style>
+</head>
+<body>
+
+<!-- ============ LOGIN ============ -->
+<div class="auth-wrap" id="loginView">
+  <div class="auth-card">
+    <div class="logo-script">The Curated Corner</div>
+    <div class="auth-emoji">🔐</div>
+    <h1>Studio Login</h1>
+    <p class="sub">Private dashboard — for the author only.</p>
+    <form id="loginForm">
+      <div class="field">
+        <label>Email</label>
+        <input type="email" id="loginEmail" placeholder="you@email.com" required autocomplete="username" />
+      </div>
+      <div class="field">
+        <label>Password</label>
+        <input type="password" id="loginPassword" placeholder="••••••••" required autocomplete="current-password" />
+      </div>
+      <button type="submit" class="btn-primary btn-full" id="loginBtn">Enter the Studio ✨</button>
+      <div class="auth-err" id="loginErr"></div>
+    </form>
+  </div>
+</div>
+
+<!-- ============ DASHBOARD ============ -->
+<div id="dashboardView" class="hidden">
+  <div class="admin-bar">
+    <div>
+      <div class="logo-script">The Curated Corner</div>
+      <div class="tag">Author Studio</div>
+    </div>
+    <div class="admin-bar-actions">
+      <span id="whoami" style="font-size:13px;color:var(--text-light);"></span>
+      <a href="index.html" target="_blank" class="btn-ghost">View site ↗</a>
+      <button class="btn-ghost" id="logoutBtn">Log out</button>
+    </div>
+  </div>
+
+  <div class="admin-wrap">
+    <div class="editor-grid">
+      <!-- EDITOR -->
+      <div class="panel">
+        <h2 id="editorTitle">Write a new post</h2>
+        <p class="panel-sub">Fill this in and watch the live preview on the right update as you type.</p>
+
+        <form id="postForm">
+          <input type="hidden" id="postId" />
+
+          <div class="field">
+            <label>Title</label>
+            <input type="text" id="title" placeholder="e.g. 12 Dreamy Spring Nail Ideas" required />
+          </div>
+
+          <div class="row-2">
+            <div class="field">
+              <label>Category</label>
+              <select id="category">
+                <option>Nail Art</option>
+                <option>Fashion</option>
+                <option>Home Decor</option>
+                <option selected>Lifestyle</option>
+                <option>Seasonal</option>
+                <option>Home Office</option>
+                <option>Gift Guides</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>URL slug</label>
+              <input type="text" id="slug" placeholder="auto-generated" />
+              <div class="hint">The web address: /post.html?slug=<b id="slugEcho">…</b></div>
+            </div>
+          </div>
+
+          <div class="field">
+            <label>Short excerpt</label>
+            <textarea id="excerpt" rows="2" placeholder="One or two lines that tease the post (shown on cards)."></textarea>
+          </div>
+
+          <div class="field">
+            <label>Cover image</label>
+            <div class="cover-drop" id="coverDrop">
+              <div class="ph" id="coverPh">📷 Click to upload a cover image<br><span style="font-size:11px;">or paste an image URL below</span></div>
+              <img id="coverPreview" class="hidden" alt="cover preview" />
+            </div>
+            <input type="file" id="coverFile" accept="image/*" class="hidden" />
+            <input type="text" id="coverUrl" placeholder="https://…  (image URL)" style="margin-top:8px; width:100%; padding:11px 14px; border:1.5px solid var(--blush-dark); border-radius:var(--radius-sm); font-family:inherit; font-size:14px;" />
+          </div>
+
+          <div class="field">
+            <label>Content</label>
+            <div class="toolbar">
+              <button type="button" data-wrap="h2">H2 Heading</button>
+              <button type="button" data-wrap="b">Bold</button>
+              <button type="button" data-wrap="i">Italic</button>
+              <button type="button" data-wrap="ul">• List</button>
+              <button type="button" data-wrap="blockquote">❝ Quote</button>
+              <button type="button" data-wrap="tip">✨ Tip box</button>
+              <button type="button" data-wrap="a">🔗 Link</button>
+              <button type="button" id="insertImgBtn">🖼 Insert image</button>
+            </div>
+            <textarea id="content" placeholder="Write your post here. Leave a blank line between paragraphs — they’ll format automatically. Use the buttons above for headings, lists, quotes and images."></textarea>
+            <input type="file" id="contentImgFile" accept="image/*" class="hidden" />
+            <div class="hint" id="readTimeHint">Reading time: ~1 min</div>
+          </div>
+
+          <div class="switch-row">
+            <label class="switch"><input type="checkbox" id="published" checked /><span class="slider"></span></label>
+            <span style="font-size:14px;color:var(--text-mid);"><b>Published</b> — visible on the blog. Turn off to save as a private draft.</span>
+          </div>
+
+          <div class="editor-actions">
+            <button type="submit" class="btn-primary" id="saveBtn">Publish post ✨</button>
+            <button type="button" class="btn-ghost" id="newBtn">Clear / New</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- LIVE PREVIEW -->
+      <div class="panel preview-panel">
+        <h2>Live preview</h2>
+        <p class="panel-sub">Exactly how readers will see it.</p>
+        <img id="pvCover" class="pv-cover" alt="" />
+        <span class="pv-cat" id="pvCat">✨ Lifestyle</span>
+        <div class="pv-title" id="pvTitle">Your title appears here</div>
+        <div class="pv-excerpt" id="pvExcerpt"></div>
+        <div class="pv-meta" id="pvMeta">By Pallavi K. · today · 1 min read</div>
+        <div class="pv-body" id="pvBody"><p style="color:var(--text-light)">Start writing to see your post come to life…</p></div>
+      </div>
+    </div>
+
+    <!-- POSTS LIST -->
+    <div class="posts-head">
+      <h2>Your posts</h2>
+      <button class="btn-ghost" id="refreshBtn">↻ Refresh</button>
+    </div>
+    <div id="postsList"><div class="empty">Loading…</div></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js"></script>
+<script src="admin.js"></script>
+</body>
+</html>
