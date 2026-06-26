@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "The Curated Corner — Fashion, Nail Art, Home Decor & Lifestyle Blog",
   "private": true,
+  "engines": {
+    "node": "22.x"
+  },
   "scripts": {
     "dev": "vercel dev",
     "build": "echo 'Static site — no build step'",
