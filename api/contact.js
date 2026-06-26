@@ -1,9 +1,15 @@
 import { withSupabase } from "@supabase/server"
+import WebSocket from "ws"
+
+// supabase-js builds a realtime client that needs a WebSocket. On Node < 22
+// there's no global WebSocket, so we hand it the `ws` implementation. (We never
+// use realtime, but the client constructor would otherwise throw.)
+const supabaseOptions = { realtime: { transport: WebSocket } }
 
 // POST /api/contact — saves contact form messages to Supabase.
 // Public form endpoint: anyone may POST. We write with supabaseAdmin
 // (service role) so the `contact_messages` table can stay fully locked by RLS.
-export default withSupabase({ auth: "none" }, async (req, ctx) => {
+export default withSupabase({ auth: "none", supabaseOptions }, async (req, ctx) => {
   if (req.method !== "POST") {
     return Response.json({ error: "Method not allowed" }, { status: 405 })
   }
