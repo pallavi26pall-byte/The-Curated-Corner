@@ -98,10 +98,19 @@ create table if not exists public.contact_messages (
   created_at timestamptz not null default now()
 );
 
--- These are written by the server (secret key) so RLS stays on with no
--- public policies — visitors can't read other people's data.
 alter table public.subscribers      enable row level security;
 alter table public.contact_messages enable row level security;
+
+-- Visitors may SUBMIT the newsletter / contact forms (insert only).
+-- There is no select policy, so no one can read other people's data through
+-- the public key — you read submissions in the Supabase Table Editor.
+drop policy if exists "anyone can subscribe" on public.subscribers;
+create policy "anyone can subscribe"
+  on public.subscribers for insert to anon, authenticated with check (true);
+
+drop policy if exists "anyone can contact" on public.contact_messages;
+create policy "anyone can contact"
+  on public.contact_messages for insert to anon, authenticated with check (true);
 
 -- ============================================================
 -- DONE. Next: create your admin login.

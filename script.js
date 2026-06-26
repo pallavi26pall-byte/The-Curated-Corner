@@ -51,7 +51,7 @@ catPills.forEach(pill => {
   });
 });
 
-// Newsletter subscribe handler — posts to /api/subscribe (Supabase)
+// Newsletter subscribe handler — writes straight to Supabase (insert-only RLS)
 async function handleSubscribe(e) {
   e.preventDefault();
   const form = e.target;
@@ -63,26 +63,20 @@ async function handleSubscribe(e) {
   btn.disabled = true;
 
   try {
-    const res = await fetch('/api/subscribe', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, email }),
-    });
-    const data = await res.json().catch(() => ({}));
-    if (!res.ok) throw new Error(data.error || 'Request failed');
-    btn.textContent = '🎉 ' + (data.message || 'Subscribed!');
+    if (!window.sb) throw new Error('offline');
+    const { error } = await window.sb.from('subscribers').insert({ name: name || null, email });
+    if (error && error.code !== '23505') throw error; // 23505 = already subscribed
+    btn.textContent = error && error.code === '23505' ? "🎉 You're already subscribed!" : '🎉 Subscribed!';
     btn.style.background = 'var(--sage)';
     form.reset();
   } catch (err) {
-    btn.textContent = err.message === 'Failed to fetch'
-      ? 'Network error — try again'
-      : 'Something went wrong — try again';
+    btn.textContent = 'Something went wrong — try again';
     btn.style.background = '#c0392b';
     btn.disabled = false;
   }
 }
 
-// Contact form handler — posts to /api/contact (Supabase)
+// Contact form handler — writes straight to Supabase (insert-only RLS)
 async function handleContact(e) {
   e.preventDefault();
   const form = e.target;
@@ -98,13 +92,9 @@ async function handleContact(e) {
   if (note) { note.textContent = ''; note.style.color = ''; }
 
   try {
-    const res = await fetch('/api/contact', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, email, message }),
-    });
-    const data = await res.json().catch(() => ({}));
-    if (!res.ok) throw new Error(data.error || 'Request failed');
+    if (!window.sb) throw new Error('offline');
+    const { error } = await window.sb.from('contact_messages').insert({ name: name || null, email, message });
+    if (error) throw error;
     form.reset();
     btn.textContent = '✓ Sent!';
     btn.style.background = 'var(--sage)';
